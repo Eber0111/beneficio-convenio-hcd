@@ -129,7 +129,7 @@ const ENTIDADES = [
     slug: "lisandro-de-la-torre",
     logo: "LisandroTorre.png",
     destinatarios: "Agentes del HCD.",
-    beneficio: "Beneficio vigente hasta 31/12/2025.",
+    //beneficio: "Beneficio vigente hasta 31/12/2025.",
     web: "https://www.institutodelatorre.edu.ar",
     facebook: "https://www.facebook.com/ISLT04",
     instagram: "@lisandrodelatorre.ok",
