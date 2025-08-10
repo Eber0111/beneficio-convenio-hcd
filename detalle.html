@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detalle de Convenio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container" style="padding-top:18px">
+    <a class="btn" href="index.html">← Volver</a>
+    <div class="detail" id="detail" style="margin-top:14px"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    const svg = {
+      web: '<svg class="icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#00B386" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 3 3.8 6.3 3.8 9s-1.3 6-3.8 9c-2.5-3-3.8-6.3-3.8-9s1.3-6 3.8-9Z" stroke="#00B386" stroke-width="1.6"/></svg>',
+      ig: '<svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#E03C79" stroke-width="1.6"/><circle cx="12" cy="12" r="3.5" stroke="#E03C79" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.2" fill="#E03C79"/></svg>',
+      fb: '<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M14 9h3V6h-3c-2 0-3 1.3-3 3v2H8v3h3v7h3v-7h2.5l.5-3H14V9Z" fill="#60a5fa"/></svg>',
+      map: '<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.7 2 6 4.7 6 8c0 4.8 6 12 6 12s6-7.2 6-12c0-3.3-2.7-6-6-6Z" stroke="#00B386" stroke-width="1.6"/><circle cx="12" cy="8" r="2.5" fill="#00B386"/></svg>',
+      phone: '<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M6 2h12v20H6z" stroke="#E03C79" stroke-width="1.6"/><circle cx="12" cy="18" r="1.4" fill="#E03C79"/></svg>',
+      warn: '<svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3l10 18H2L12 3z" stroke="#E03C79" stroke-width="1.6"/><path d="M12 9v5" stroke="#E03C79" stroke-width="1.6"/><circle cx="12" cy="17" r="1" fill="#E03C79"/></svg>'
+    };
+
+    function q(key){ return new URLSearchParams(location.search).get(key) }
+    const slug = q('e');
+    const data = ENTIDADES.find(x=>x.slug===slug);
+    const el = document.getElementById('detail');
+
+    if(!data){
+      el.innerHTML = '<div class="panel">No se encontró la entidad.</div>';
+    } else {
+      const gmaps = 'https://www.google.com/maps/search/' + encodeURIComponent(data.direccion || data.nombre);
+      const tel = data.telefono ? `<div class="item">${svg.phone}<a href="tel:${data.telefono}"><strong>${data.telefono}</strong></a></div>` : '';
+      const fb = data.facebook ? `<div class="item">${svg.fb}<a target="_blank" rel="noopener" href="${data.facebook}"><strong>Facebook</strong> — Perfil oficial</a></div>` : '';
+      const ig = data.instagram ? `<div class="item">${svg.ig}<a target="_blank" rel="noopener" href="${data.instagram.startsWith('http') ? data.instagram : 'https://instagram.com/' + data.instagram.replace('@','')}"><strong>Instagram</strong> — ${data.instagram.replace('https://instagram.com/','').replace('@','')}</a></div>` : '';
+      const web = data.web ? `<div class="item">${svg.web}<a target="_blank" rel="noopener" href="${data.web.startsWith('http')?data.web:'https://' + data.web}"><strong>Sitio web</strong> — ${data.web.replace('https://','')}</a></div>` : '';
+
+      const beneficio = data.beneficio ? `<div class="pill">Beneficio: ${data.beneficio}</div>` : '';
+      const vigencia = data.vigencia ? `<div class="pill">Vigencia: ${data.vigencia}</div>` : '';
+
+      el.innerHTML = `
+        <aside class="panel">
+          <img class="logo-xl" src="imagenes/${data.logo}" alt="Logo ${data.nombre}">
+        </aside>
+        <main class="panel">
+          <h1 class="h1">${data.nombre}</h1>
+          <p class="lead">${data.destinatarios ? data.destinatarios : ''}</p>
+          <div class="kv">${beneficio}${vigencia}</div>
+          <div class="section">
+            <h3>Contacto y enlaces</h3>
+            <div class="list">
+              ${web}
+              ${fb}
+              ${ig}
+              <div class="item">${svg.map}<a target="_blank" rel="noopener" href="${gmaps}"><strong>Ver en Google Maps</strong> — ${data.direccion || 'Ubicación referencial'}</a></div>
+              ${tel}
+            </div>
+          </div>
+          <div class="section alert">${svg.warn} Recordá verificar los <strong>requisitos específicos</strong> de esta Institución.</div>
+          <div class="actions">
+            <a class="btn" href="index.html">Volver al listado</a>
+          </div>
+        </main>
+      `;
+    }
+  </script>
+</body>
+</html>
