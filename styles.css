@@ -136,3 +136,10 @@ a{color:inherit;text-decoration:none}
 .icon{width:20px;height:20px;flex:0 0 20px}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
 .alert{background:rgba(224,60,121,.12);border:1px dashed rgba(224,60,121,.4);padding:10px;border-radius:10px;color:#ffd7e6}
+
+/* Ajustes puntuales de tamaño de logo por entidad */
+.logo-ises { height: 88px; }              /* Instituto Superior Espíritu Santo */
+.logo-posadas-educa { height: 88px; }     /* Instituto Posadas Educa */
+.logo-iset { height: 88px; }              /* Instituto Superior de Estudios Técnicos */
+.logo-cuenca-del-plata { height: 88px; }  /* Univ. de la Cuenca del Plata */
+.logo-combate-mborore { height: 88px; }   /* Combate Mbororé */

@@ -77,7 +77,7 @@
       a.href = `detalle.html?e=${encodeURIComponent(e.slug)}`;
       a.className = 'card-entity';
       a.innerHTML = `
-        <img class="logo" src="imagenes/${e.logo}" alt="Logo ${e.nombre}" loading="lazy">
+        <img class="logo logo-${e.slug}" src="imagenes/${e.logo}" alt="Logo ${e.nombre}" loading="lazy">
         <div class="name">${e.nombre}</div>
       `;
       grid.appendChild(a);
