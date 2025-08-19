@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Convenios HCD Posadas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header" role="banner">
+    <div class="header-inner">
+      <div class="brand" aria-label="HCD Posadas - Dirección de Desarrollo Humano">
+        <div class="brand-logos">
+          <img src="imagenes/HCD.png" alt="Logo HCD">
+        </div>
+        <div class="site-title">
+          <div class="title">Beneficios por Convenios EBER — HCD Posadas</div>
+          <div class="subtitle">Dirección de Desarrollo Humano</div>
+        </div>
+      </div>
+    </div>
+    <div class="banner">
+      ⚠️ Para acceder a los beneficios revisá los <a href="#requisitos">REQUISITOS</a> y validá tu inscripción con Desarrollo Humano.
+    </div>
+  </header>
+
+  <main class="main container">
+    <section id="requisitos" class="hero" aria-labelledby="requisitos-title">
+      <div class="card">
+        <h2 id="requisitos-title">Requisitos para inscribirse</h2>
+        <p>Los beneficios son exclusivos para agentes del HCD y/o familiares directos según la Institución.</p>
+        <div class="req-grid">
+          <div class="req">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#00B386" stroke-width="1.8"/><path d="M8 12l2.5 2.5L16 9" stroke="#00B386" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div>
+              <h4>REQUISITOS ESENCIALES GENERALES</h4>
+              <ul>
+                <li>🧑 DNI.</li>
+                <li>📄 Recibo de Sueldo y/o Certificación de Servicios.</li>
+                <li>👪 Acta de Matrimonio/Nacimiento acreditante del vínculo (familiar directo).</li>
+              </ul>
+            </div>
+          </div>
+          <div class="req">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" stroke="#00B386" stroke-width="1.8"/><path d="M7 9h10M7 13h6" stroke="#00B386" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <div>
+              <h4>REQUISITOS ESPECÍFICOS</h4>
+              <p>Los que solicite individualmente la <strong>Institución</strong> respectiva.</p>
+            </div>
+          </div>
+          <div class="req">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l10 18H2L12 3z" stroke="#E03C79" stroke-width="1.6"/><path d="M12 9v5" stroke="#E03C79" stroke-width="1.6"/><circle cx="12" cy="17" r="1" fill="#E03C79"/></svg>
+            <div>
+              <h4>NO OLVIDES</h4>
+              <p>Pasar por la <strong>Dirección de Desarrollo Humano</strong> por cualquier consulta y para confirmar si te has inscripto, iniciado o estás cursando un curso o carrera de alguna de las Instituciones con Convenio.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="convenios" aria-labelledby="convenios-title">
+      <h2 id="convenios-title" style="margin:6px 0 12px">Convenios disponibles</h2>
+      <div id="grid" class="grid" aria-live="polite"></div>
+    </section>
+
+    <footer class="footer">
+      © <span id="year"></span> HCD Posadas · Dirección de Desarrollo Humano
+    </footer>
+  </main>
+
+  <script src="data.js"></script>
+  <script>
+    const grid = document.getElementById('grid');
+    ENTIDADES.forEach(e => {
+      const a = document.createElement('a');
+      a.href = `detalle.html?e=${encodeURIComponent(e.slug)}`;
+      a.className = 'card-entity';
+      a.innerHTML = `
+        <img class="logo logo-${e.slug}" src="imagenes/${e.logo}" alt="Logo ${e.nombre}" loading="lazy">
+        <div class="name">${e.nombre}</div>
+      `;
+      grid.appendChild(a);
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
